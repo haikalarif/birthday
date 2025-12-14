@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ucapan Ulang Tahun Romantis & Islami</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Background Music -->
+    <audio id="backgroundMusic" loop>
+        <source src="romantic-birthday-song.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <!-- Initial Screen -->
+    <div id="initialScreen" class="screen active">
+        <div class="content">
+            <button id="startButton" class="gift-btn">
+                🎁
+            </button>
+        </div>
+        <div class="floating-hearts"></div>
+    </div>
+
+    <!-- Teaser Screen -->
+    <div id="teaserScreen" class="screen">
+        <div class="teaser-content">
+            <div class="countdown-container">
+                <h2 class="teaser-title">Makin Tua nih...🤭</h2>
+                <div class="mystery-text">
+                    <p class="typing-text">Makin sabar ya...</p>
+                    <p class="typing-text delay-1">Makin kuat dan hebat...</p>
+                    <p class="typing-text delay-2">💪🏻🥰</p>
+                </div>
+                <button id="revealButton" class="reveal-btn">
+                    <span>😝</span>
+                </button>
+            </div>
+        </div>
+        <div class="mystery-particles"></div>
+    </div>
+
+    <!-- Main Birthday Screen -->
+    <div id="mainScreen" class="screen">
+        <div class="birthday-content">
+            <!-- Photo Container -->
+            <div class="photo-container">
+                <img src="birthday-person.jpg" alt="Happy Birthday" class="birthday-photo">
+                <div class="photo-frame"></div>
+            </div>
+            
+            <div class="message-container">
+                <h2 class="birthday-title">Barakallahu fii Umrik</h2>
+                <div class="birthday-message">
+                    <p>Selamat ulang tahun sayang ❤️</p>
+                    <p>Sehat selalu, panjang umur, rezekinya dilancarkan dan dilimpahkan selalu. Semua aktifitas dan kegiatan diberikan kerberhakan.</p>
+                    <p>Terutama, Bahagia selalu ya! 🤲✨</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Confetti Container -->
+        <div class="confetti-container"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

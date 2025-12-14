@@ -1,0 +1,542 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    overflow: hidden;
+    height: 100vh;
+    background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('couple-photo.jpg');
+    background-size: cover;
+    background-position: left center;
+    background-attachment: fixed;
+}
+
+.screen {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.8s ease-in-out;
+}
+
+.screen.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Initial Screen Styles */
+#initialScreen {
+    background: linear-gradient(135deg, rgba(0, 129, 221, 0.9), rgba(0, 11, 17, 0.9));
+}
+
+/* Teaser Screen Styles */
+#teaserScreen {
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.9), rgba(125, 125, 124, 0.9));
+}
+
+.teaser-content {
+    text-align: center;
+    color: white;
+    z-index: 10;
+    max-width: 600px;
+    padding: 2rem;
+}
+
+.countdown-container {
+    background: rgba(255,255,255,0.1);
+    padding: 3rem 2rem;
+    border-radius: 25px;
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255,255,255,0.2);
+    animation: fadeInScale 1s ease-out;
+}
+
+.teaser-title {
+    font-family: 'Dancing Script', cursive;
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    color: #dbba00;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    animation: slideInFromTop 1s ease-out;
+}
+
+.mystery-text {
+    margin-bottom: 2rem;
+}
+
+.typing-text {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    margin-bottom: 0.2rem;
+    opacity: 0;
+    animation: typeWriter 1s ease-out forwards;
+}
+
+.typing-text.delay-1 {
+    animation-delay: 1.5s;
+}
+
+.typing-text.delay-2 {
+    animation-delay: 3s;
+}
+
+.reveal-btn {
+    background: transparent;
+    border: 1.5px solid #dbba00;
+    padding: 15px;
+    border-radius: 50%;
+    color: white;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 10px 30px rgba(255,215,0,0.4);
+    transition: all 0.3s ease;
+    animation: fadeInUp 1s ease-out 4.5s both;
+}
+
+.reveal-btn:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(255,215,0,0.6);
+}
+
+/* Mystery Particles */
+.mystery-particles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.content {
+    text-align: center;
+    color: white;
+    z-index: 100;
+    position: relative;
+}
+
+.title {
+    font-family: 'Dancing Script', cursive;
+    font-size: 4rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    animation: fadeInUp 1s ease-out;
+}
+
+.subtitle {
+    font-size: 1.5rem;
+    margin-bottom: 3rem;
+    opacity: 0.9;
+    animation: fadeInUp 1s ease-out 0.5s both;
+}
+
+.gift-btn {
+    background: transparent;
+    border: 1.5px solid #0081dd;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    color: white;
+    font-size: 4rem;
+    cursor: pointer;
+    box-shadow: 0 15px 40px rgba(0, 30, 49, 0.459);
+    transition: all 0.3s ease;
+    position: relative;
+    z-index: 1000;
+    overflow: hidden;
+    animation: giftPulse 2s ease-in-out infinite, fadeInUp 1s ease-out 1s both;
+}
+
+.gift-btn:hover {
+    transform: translateY(-10px) scale(1.1);
+    box-shadow: 0 20px 50px rgba(0, 129, 221, 0.8);
+}
+
+.gift-btn:active {
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 10px 30px rgba(0, 129, 221, 0.8);
+}
+
+/* Main Screen Styles */
+#mainScreen {
+    background: linear-gradient(135deg, rgba(8, 16, 111, 0.8), rgba(12, 12, 42, 0.8));
+    padding: 1rem;
+}
+
+.birthday-content {
+    max-width: 90%;
+    width: 100%;
+    max-width: 500px;
+    text-align: center;
+    color: white;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+/* Photo Styles */
+.photo-container {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    margin: 0 auto;
+    animation: fadeInScale 1s ease-out;
+}
+
+.birthday-photo {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid #ffd700;
+    box-shadow: 0 10px 30px rgba(255,215,0,0.3);
+    animation: photoGlow 2s ease-in-out infinite alternate;
+}
+
+.photo-frame {
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    right: -10px;
+    bottom: -10px;
+    border: 2px solid rgba(255,215,0,0.5);
+    border-radius: 50%;
+    animation: rotate 10s linear infinite;
+}
+
+.birthday-title {
+    font-family: 'Dancing Script', cursive;
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    color: #ffd700;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    animation: slideInFromTop 1s ease-out 0.5s both;
+}
+
+.message-container {
+    width: 100%;
+}
+
+.birthday-message {
+    background: rgba(255,255,255,0.15);
+    padding: 1.5rem;
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.2);
+    animation: fadeInScale 1s ease-out 1s both;
+}
+
+.birthday-message p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+    opacity: 0;
+    animation: fadeInUp 0.8s ease-out forwards;
+}
+
+.birthday-message p:last-child {
+    margin-bottom: 0;
+}
+
+.birthday-message p:nth-child(1) { animation-delay: 1.5s; }
+.birthday-message p:nth-child(2) { animation-delay: 1.8s; }
+.birthday-message p:nth-child(3) { animation-delay: 2.1s; }
+
+/* Floating Hearts */
+.floating-hearts {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 1;
+}
+
+/* Confetti Container */
+.confetti-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.confetti {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: #ff6b9d;
+    animation: confettiFall linear infinite;
+}
+
+.confetti.square {
+    border-radius: 0;
+}
+
+.confetti.circle {
+    border-radius: 50%;
+}
+
+.confetti.triangle {
+    width: 0;
+    height: 0;
+    background: transparent;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-bottom: 10px solid #ff6b9d;
+}
+
+.confetti.rectangle {
+    width: 15px;
+    height: 8px;
+    border-radius: 2px;
+}
+
+/* Confetti Colors */
+.confetti.pink { background: #ff6b9d; }
+.confetti.gold { background: #ffd700; }
+.confetti.rose { background: #ff8e9b; }
+.confetti.purple { background: #da70d6; }
+.confetti.white { background: #ffffff; }
+
+.confetti.triangle.pink { border-bottom-color: #ff6b9d; }
+.confetti.triangle.gold { border-bottom-color: #ffd700; }
+.confetti.triangle.rose { border-bottom-color: #ff8e9b; }
+.confetti.triangle.purple { border-bottom-color: #da70d6; }
+.confetti.triangle.white { border-bottom-color: #ffffff; }
+
+/* Animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInScale {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes slideInFromTop {
+    from {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes heartbeat {
+    0%, 100% { transform: translateY(-50%) scale(1); }
+    50% { transform: translateY(-50%) scale(1.2); }
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-20px) rotate(10deg); }
+}
+
+@keyframes confettiFall {
+    0% {
+        transform: translateY(-100vh) rotate(0deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(100vh) rotate(720deg);
+        opacity: 0;
+    }
+}
+
+@keyframes floatingHeart {
+    0% {
+        opacity: 1;
+        transform: translateY(0) scale(0);
+    }
+    15% {
+        transform: translateY(-20px) scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-100px) scale(0.5);
+    }
+}
+
+.floating-heart {
+    position: absolute;
+    color: #ff6b9d;
+    font-size: 1.5rem;
+    animation: floatingHeart 3s ease-out infinite;
+    pointer-events: none;
+}
+
+/* New Animations */
+@keyframes photoGlow {
+    0% { box-shadow: 0 10px 30px rgba(255,215,0,0.3); }
+    100% { box-shadow: 0 15px 40px rgba(255,215,0,0.6); }
+}
+
+@keyframes rotate {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@keyframes giftPulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+@keyframes typeWriter {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    body {
+        background-attachment: scroll;
+    }
+    
+    .title {
+        font-size: 2.2rem;
+        margin-bottom: 0.5rem;
+    }
+    
+    .subtitle {
+        font-size: 1rem;
+        margin-bottom: 2rem;
+    }
+    
+    .gift-btn {
+        width: 100px;
+        height: 100px;
+        font-size: 3rem;
+    }
+    
+    .teaser-title {
+        font-size: 2rem;
+    }
+    
+    .typing-text {
+        font-size: 1rem;
+    }
+    
+    .countdown-container {
+        padding: 2rem 1.5rem;
+    }
+    
+    #mainScreen {
+        padding: 0.5rem;
+    }
+    
+    .birthday-content {
+        max-width: 95%;
+        gap: 1rem;
+    }
+    
+    .photo-container {
+        width: 150px;
+        height: 150px;
+    }
+    
+    .birthday-title {
+        font-size: 1.8rem;
+    }
+    
+    .birthday-message {
+        padding: 1rem;
+    }
+    
+    .birthday-message p {
+        font-size: 0.95rem;
+        line-height: 1.5;
+        margin-bottom: 0.8rem;
+    }
+    
+    .confetti {
+        width: 8px;
+        height: 8px;
+    }
+    
+    .confetti.rectangle {
+        width: 12px;
+        height: 6px;
+    }
+}
+
+@media (max-width: 480px) {
+    .title {
+        font-size: 1.8rem;
+    }
+    
+    .subtitle {
+        font-size: 0.9rem;
+    }
+    
+    .photo-container {
+        width: 120px;
+        height: 120px;
+    }
+    
+    .birthday-title {
+        font-size: 1.5rem;
+    }
+    
+    .birthday-message p {
+        font-size: 0.9rem;
+    }
+    
+    .gift-btn {
+        width: 80px;
+        height: 80px;
+        font-size: 2.5rem;
+    }
+    
+    .teaser-title {
+        font-size: 1.5rem;
+    }
+    
+    .typing-text {
+        font-size: 0.9rem;
+    }
+    
+    .countdown-container {
+        padding: 1.5rem 1rem;
+    }
+}
