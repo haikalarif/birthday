@@ -8,7 +8,7 @@ body {
     font-family: 'Poppins', sans-serif;
     overflow: hidden;
     height: 100vh;
-    background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('couple-photo.jpg');
+    background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('couple-photo.JPG');
     background-size: cover;
     background-position: left center;
     background-attachment: fixed;
